@@ -1,155 +1,199 @@
-﻿
-/* ======================================================
-   NADA DE ESPAÇO NO TOPO
-====================================================== */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+﻿/* ====== DreamerGames - Estilo Completo (esticado) ====== */
+:root {
+    --navbar-h: 72px;
+    --bg-1: #0f1220;
+    --bg-2: #14182a;
+    --primary: #7c5cff;
+    --primary-600: #6a4af1;
+    --primary-700: #5a3de3;
+    --text: #e9ecf1;
+    --muted: #a8b0bf;
+    --error: #ff6b6b;
+    --ring: rgba(124,92,255,.45);
+    --card: rgba(255,255,255,.06);
+    --border: rgba(255,255,255,.12);
+    --shadow: 0 10px 25px rgba(0,0,0,.35);
+    /* novo: largura do card mais “esticada” */
+    --card-w: clamp(660px, 60vw, 780px);
 }
 
-/* Não tocamos no header/nav. Sem padding/margem no body! */
-header, .navbar, .site-header {
+* {
+    box-sizing: border-box
+}
+
+html, body {
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0;
+    background-color: transparent;
+    scroll-behavior: smooth
+}
+
+body {
+    font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    color: var(--text);
+    background: radial-gradient(1000px 800px at 10% -10%, #1f2350 0%, transparent 60%), radial-gradient(1200px 800px at 110% 110%, #2a2152 0%, transparent 60%), linear-gradient(180deg, var(--bg-1), var(--bg-2));
+    padding-top: var(--navbar-h);
+}
+
+    body > header, body > nav, body > main {
+        margin-top: 0 !important;
+        padding-top: 0 !important
+    }
+
+/* NAVBAR */
+.navbar-top {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    height: var(--navbar-h);
+    background: linear-gradient(180deg,rgba(20,24,42,.98),rgba(20,24,42,.95));
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 6px 14px rgba(0,0,0,.28);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-/* ======================================================
-   FUNDO / ÁREA DA PÁGINA (somente o conteúdo)
-====================================================== */
-.entrar-pag {
-    /* NENHUM padding/margin aqui, senão empurra o header */
-    background: radial-gradient(950px 600px at 20% -10%, #1a1b2e 0%, #0b0e14 65%) fixed;
-    min-height: 100vh;
-    background-repeat: no-repeat;
+.navbar-container {
+    max-width: 1180px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 22px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    gap: 18px;
 }
 
-/* ======================================================
-   TÍTULO
-====================================================== */
-.login-title {
-    font-size: 32px; /* mantém o tamanho atual */
-    font-weight: 700; /* mantém o destaque */
-    margin-left : 320px; /* centraliza o texto */
-    color: #bcbcff; /* tom suave de roxo */
-    text-shadow: 0 0 10px rgba(124, 92, 255, 0.5); /* brilho sutil */
-    letter-spacing: 1px; /* espaçamento das letras */
-    margin-bottom: 25px; /* espaço entre o título e o formulário */
-    margin-top:20px;
-    
-}
-
-/* ======================================================
-   CARD DO FORMULÁRIO
-====================================================== */
-.login-form {
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto 48px; /* distância do rodapé */
-    padding: 28px 28px 32px;
-    color: #e9f0f5;
-    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 16px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 20px 50px rgba(0,0,0,.45);
-}
-
-/* bloco interno (seu nome de classe) */
-.itens-form {
+.nav-left, .nav-right {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
+    align-items: center;
+    gap: 14px
 }
 
-/* ======================================================
-   CAMPOS
-====================================================== */
-.form-group {
-    margin: 0;
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 12px
 }
 
-    .form-group label {
-        display: block;
-        margin: 8px 0 6px;
-        font-weight: 700;
-        font-size: 14px;
-        color: #c9c9c9;
+.logo {
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 20px;
+    letter-spacing: .4px
+}
+
+.navbar-top a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: .2s
+}
+
+    .navbar-top a:hover {
+        color: #d9d4ff;
+        background: rgba(124,92,255,.1)
     }
 
-.form-control {
-    width: 100%;
-    height: 44px;
-    padding: 10px 12px;
-    background: #16181f;
-    border: 1px solid rgba(255,255,255,.10);
+.search-bar {
+    width: 280px;
+    max-width: 36vw;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
     border-radius: 10px;
+    padding: 9px 12px;
     color: #fff;
-    font-size: 15px;
-    transition: border-color .2s, box-shadow .2s, background .2s;
+    outline: none;
+    transition: .2s;
 }
 
-    .form-control::placeholder {
-        color: #8a93a3;
+    .search-bar::placeholder {
+        color: #9aa6bd
+    }
+
+    .search-bar:focus {
+        border-color: var(--primary);
+        background: rgba(255,255,255,.1);
+        box-shadow: 0 0 0 6px var(--ring)
+    }
+
+/* FORM ESTICADO */
+.login-form {
+    width: var(--card-w); /* <<< AQUI fica largo */
+    margin: 50px auto;
+    padding: 36px 34px; /* um pouco mais de respiro */
+    border-radius: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+    animation: pop .25s ease-out;
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: translateY(8px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.form-group {
+    display: grid;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 18px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #bcbcff;
+    text-shadow: 0 0 6px rgba(124, 92, 255, 0.25);
+}
+
+
+/* inputs um pouco maiores para acompanhar a largura */
+.form-control{
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.05);
+    color: var(--text);
+    font-size: 17px;
+    outline: none;
+    transition: .15s;
+}
+
+    .form-control::placeholder{
+        color: #94a0b3;
     }
 
     .form-control:focus {
-        outline: none;
-        border-color: #7B61FF;
-        box-shadow: 0 0 0 3px rgba(123,97,255,.25);
-        background: #151a22;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 6px var(--ring);
+        background: rgba(255,255,255,.07);
+        color:white;
     }
 
-#Senha {
-    margin-bottom: 6px;
-}
-
-/* ======================================================
-   BOTÃO (sobrepõe Bootstrap sem mexer no topo)
-====================================================== */
+/* botões */
 #botao {
-    display: block;
-    width: 100%;
-    height: 48px;
-    margin-top: 12px;
-    border: 1px solid rgba(123,97,255,.5) !important;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #7B61FF, #4C7EFF) !important;
-    color: #fff !important;
-    font-weight: 400;
-    font-size: 16px;
-    letter-spacing: .2px;
+    border: none;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(76,126,255,.28);
-    transition: transform .08s ease, filter .2s, box-shadow .2s;
-}
-
-    #botao:hover {
-        filter: brightness(1.06);
-        box-shadow: 0 10px 28px rgba(123,97,255,.35);
-    }
-
-    #botao:active {
-        transform: translateY(1px);
-    }
-
-/* ======================================================
-   RESPONSIVO
-====================================================== */
-@media (max-width: 640px) {
-    .login-title {
-        margin: 24px auto 14px;
-    }
-
-    .login-form {
-        padding: 22px 20px 26px;
-    }
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 14px 18px;
+    transition: .2s
 }
 
 #botao:first-of-type {
@@ -160,8 +204,63 @@ header, .navbar, .site-header {
     margin-top: 10px;
 }
 
-    #botao:first-of-type:hover {
-        transform: translateY(-1px);
-        background: linear-gradient(180deg,var(--primary-600),var(--primary-700));
-        box-shadow: 0 10px 22px rgba(124,92,255,.45);
+#botao:first-of-type:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(180deg,var(--primary-600),var(--primary-700));
+    box-shadow: 0 10px 22px rgba(124,92,255,.45);
+}
+
+ #botao{
+    width: 100%;
+    margin-top: 12px;
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary)
+}
+
+    #botao:hover{
+        background: rgba(124,92,255,.1);
+        box-shadow: 0 8px 18px rgba(124,92,255,.25)
     }
+
+/* Título acima do card (se usar um <h1>) */
+.login-title {
+    font-size: 36px; /* mantém o tamanho atual */
+    font-weight: 700; /* mantém o destaque */
+    text-align: center; /* centraliza o texto */
+    color: #bcbcff; /* tom suave de roxo */
+    text-shadow: 0 0 10px rgba(124, 92, 255, 0.5); /* brilho sutil */
+    letter-spacing: 1px; /* espaçamento das letras */
+    margin-bottom: 25px; /* espaço entre o título e o formulário */
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+    .login-title:hover {
+        color: #d3caff; /* muda o tom ao passar o mouse */
+        text-shadow: 0 0 18px rgba(124, 92, 255, 0.8);
+    }
+
+
+/* Responsivo */
+@media (max-width: 960px) {
+    :root {
+        --card-w: clamp(640px, 86vw, 760px);
+    }
+}
+
+@media (max-width: 720px) {
+    :root {
+        --card-w: 92vw;
+    }
+
+    form {
+        padding: 26px 18px;
+    }
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #bcbcff;
+    text-shadow: 0 0 6px rgba(124, 92, 255, 0.25);
+}
