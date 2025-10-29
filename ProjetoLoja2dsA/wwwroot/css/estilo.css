@@ -1,75 +1,167 @@
-﻿.login-form {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    padding: 40px 35px;
-    width: 340px;
-    color: #fff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-    margin: 0 auto;
+﻿
+/* ======================================================
+   NADA DE ESPAÇO NO TOPO
+====================================================== */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* Não tocamos no header/nav. Sem padding/margem no body! */
+header, .navbar, .site-header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* ======================================================
+   FUNDO / ÁREA DA PÁGINA (somente o conteúdo)
+====================================================== */
+.entrar-pag {
+    /* NENHUM padding/margin aqui, senão empurra o header */
+    background: radial-gradient(950px 600px at 20% -10%, #1a1b2e 0%, #0b0e14 65%) fixed;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ======================================================
+   TÍTULO
+====================================================== */
 .login-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 25px;
-    color: #7B61FF;
-}
-.form-group{
-    margin-bottom:15px;
-}
-.form-group label{
-    display:block;
-    margin-bottom:10px;
-    font-weight:bold;
-}
-.form-control {
-    width: 100%;
-    padding: 10px;
-    background-color: rgba(20, 20, 25, 0.9);
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 15px;
-    transition: 0.3s;
-}
-.btn-outline-primary {
-    width: 100%;
-    padding: 10px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin: 0 auto;
-    margin-bottom: 20px;
-   
+    font-size: 32px; /* mantém o tamanho atual */
+    font-weight: 700; /* mantém o destaque */
+    margin-left : 320px; /* centraliza o texto */
+    color: #bcbcff; /* tom suave de roxo */
+    text-shadow: 0 0 10px rgba(124, 92, 255, 0.5); /* brilho sutil */
+    letter-spacing: 1px; /* espaçamento das letras */
+    margin-bottom: 25px; /* espaço entre o título e o formulário */
+    margin-top:20px;
+    
 }
 
- .btn-outline-primary:hover {
-        background-color:lightgray;
-        transform:scale(1.05);
-        color:black;
+/* ======================================================
+   CARD DO FORMULÁRIO
+====================================================== */
+.login-form {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto 48px; /* distância do rodapé */
+    padding: 28px 28px 32px;
+    color: #e9f0f5;
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,.45);
+}
 
+/* bloco interno (seu nome de classe) */
+.itens-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ======================================================
+   CAMPOS
+====================================================== */
+.form-group {
+    margin: 0;
+}
+
+    .form-group label {
+        display: block;
+        margin: 8px 0 6px;
+        font-weight: 700;
+        font-size: 14px;
+        color: #c9c9c9;
     }
 
-.entrar-pag {
-    background: radial-gradient(circle at top, #2b2b2b, #0b0e14);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    min-height: 100vh
-}
-
-#Senha{
-    margin-bottom:30px;
-}
-
-#botao {
-    color: #7B61FF;
+.form-control {
+    width: 100%;
+    height: 44px;
+    padding: 10px 12px;
+    background: #16181f;
+    border: 1px solid rgba(255,255,255,.10);
     border-radius: 10px;
-    font-weight: bold;
+    color: #fff;
+    font-size: 15px;
+    transition: border-color .2s, box-shadow .2s, background .2s;
 }
 
-.form-control:focus {
-    outline: none;
-    border-color: #7B61FF;
-    box-shadow: 0 0 8px #7B61FF;
+    .form-control::placeholder {
+        color: #8a93a3;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #7B61FF;
+        box-shadow: 0 0 0 3px rgba(123,97,255,.25);
+        background: #151a22;
+    }
+
+#Senha {
+    margin-bottom: 6px;
 }
+
+/* ======================================================
+   BOTÃO (sobrepõe Bootstrap sem mexer no topo)
+====================================================== */
+#botao {
+    display: block;
+    width: 100%;
+    height: 48px;
+    margin-top: 12px;
+    border: 1px solid rgba(123,97,255,.5) !important;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #7B61FF, #4C7EFF) !important;
+    color: #fff !important;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: .2px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(76,126,255,.28);
+    transition: transform .08s ease, filter .2s, box-shadow .2s;
+}
+
+    #botao:hover {
+        filter: brightness(1.06);
+        box-shadow: 0 10px 28px rgba(123,97,255,.35);
+    }
+
+    #botao:active {
+        transform: translateY(1px);
+    }
+
+/* ======================================================
+   RESPONSIVO
+====================================================== */
+@media (max-width: 640px) {
+    .login-title {
+        margin: 24px auto 14px;
+    }
+
+    .login-form {
+        padding: 22px 20px 26px;
+    }
+}
+
+#botao:first-of-type {
+    width: 100%;
+    background: linear-gradient(180deg,var(--primary),var(--primary-600));
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(124,92,255,.35);
+    margin-top: 10px;
+}
+
+    #botao:first-of-type:hover {
+        transform: translateY(-1px);
+        background: linear-gradient(180deg,var(--primary-600),var(--primary-700));
+        box-shadow: 0 10px 22px rgba(124,92,255,.45);
+    }
