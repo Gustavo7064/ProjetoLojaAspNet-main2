@@ -3,17 +3,28 @@
 @{
     ViewData["Title"] = "Cadastro";
 }
-<form asp-action="Cadastro" method="post" >
-    <div >
+
+<div class="cadastrarh1">
+    <h1>Cadastrar</h1>
+</div>
+<link href="~/css/cadastro.css" rel="stylesheet" />
+<form asp-action="Cadastro" method="post">
+
+    <div class="div1-group">
         <label>Email</label>
-        <input type="email" name="email" required/>
+        <input type="email" name="email" class="formemail1-control" id="email1" required />
     </div>
 
-    <div>
+    <div class="div2-group">
         <label>Senha</label>
-        <input type="password" name="senha" required />
+        <input type="password" name="senha" class="formsenha1-control" id="senha1" required />
     </div>
     <button type="submit">Cadastrar</button>
+
+    <div class="link-abaixo">
+        Já tem uma conta?
+        <a href="/Usuario/Login">Entrar aqui</a>
+    </div>
 
 
 </form>

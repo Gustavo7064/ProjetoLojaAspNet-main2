@@ -125,7 +125,7 @@ body {
     }
 
 /* FORM ESTICADO */
-.login-form {
+form {
     width: var(--card-w); /* <<< AQUI fica largo */
     margin: 50px auto;
     padding: 36px 34px; /* um pouco mais de respiro */
@@ -149,21 +149,19 @@ body {
     }
 }
 
-.form-group {
+.div1-group, .div2-group {
     display: grid;
     gap: 10px;
-    font-size: 15px;
-    color: var(--muted);
-    margin-bottom: 18px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #bcbcff;
-    text-shadow: 0 0 6px rgba(124, 92, 255, 0.25);
+    margin-bottom: 18px
 }
 
+label {
+    font-size: 15px;
+    color: var(--muted)
+}
 
 /* inputs um pouco maiores para acompanhar a largura */
-.form-control {
+.formemail1-control, .formsenha1-control {
     width: 100%;
     padding: 16px;
     border-radius: 12px;
@@ -175,19 +173,18 @@ body {
     transition: .15s;
 }
 
-    .form-control::placeholder {
-        color: #94a0b3;
+    .formemail1-control::placeholder, .formsenha1-control::placeholder {
+        color: #94a0b3
     }
 
-    .form-control:focus {
+    .formemail1-control:focus, .formsenha1-control:focus {
         border-color: var(--primary);
         box-shadow: 0 0 0 6px var(--ring);
-        background: rgba(255,255,255,.07);
-        color: white;
+        background: rgba(255,255,255,.07)
     }
 
 /* botões */
-#botao {
+button {
     border: none;
     cursor: pointer;
     font-weight: 700;
@@ -196,21 +193,21 @@ body {
     transition: .2s
 }
 
-    #botao:first-of-type {
-        width: 100%;
-        background: linear-gradient(180deg,var(--primary),var(--primary-600));
-        color: #fff;
-        box-shadow: 0 8px 18px rgba(124,92,255,.35);
-        margin-top: 10px;
+form > button[type="submit"]:first-of-type {
+    width: 100%;
+    background: linear-gradient(180deg,var(--primary),var(--primary-600));
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(124,92,255,.35);
+    margin-top: 10px;
+}
+
+    form > button[type="submit"]:first-of-type:hover {
+        transform: translateY(-1px);
+        background: linear-gradient(180deg,var(--primary-600),var(--primary-700));
+        box-shadow: 0 10px 22px rgba(124,92,255,.45);
     }
 
-        #botao:first-of-type:hover {
-            transform: translateY(-1px);
-            background: linear-gradient(180deg,var(--primary-600),var(--primary-700));
-            box-shadow: 0 10px 22px rgba(124,92,255,.45);
-        }
-
-#botao {
+#botao2, .cadastrar {
     width: 100%;
     margin-top: 12px;
     background: transparent;
@@ -218,13 +215,13 @@ body {
     border: 1px solid var(--primary)
 }
 
-    #botao:hover {
+    #botao2:hover, .cadastrar:hover {
         background: rgba(124,92,255,.1);
         box-shadow: 0 8px 18px rgba(124,92,255,.25)
     }
 
 /* Título acima do card (se usar um <h1>) */
-.login-title {
+.cadastrarh1 h1 {
     font-size: 36px; /* mantém o tamanho atual */
     font-weight: 700; /* mantém o destaque */
     text-align: center; /* centraliza o texto */
@@ -236,7 +233,7 @@ body {
     margin-top: 70px;
 }
 
-    .login-title:hover {
+    .cadastrarh1 h1:hover {
         color: #d3caff; /* muda o tom ao passar o mouse */
         text-shadow: 0 0 18px rgba(124, 92, 255, 0.8);
     }
@@ -258,6 +255,26 @@ body {
         padding: 26px 18px;
     }
 }
+
+.link-abaixo {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 15px;
+    color: #b8b8c7;
+}
+
+    .link-abaixo a {
+        color: #7c5cff;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s, text-shadow 0.2s;
+    }
+
+        .link-abaixo a:hover {
+            color: #a891ff;
+            text-shadow: 0 0 8px rgba(124, 92, 255, 0.4);
+        }
+
 
 label {
     font-size: 16px;
