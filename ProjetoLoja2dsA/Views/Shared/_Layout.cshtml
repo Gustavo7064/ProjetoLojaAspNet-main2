@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProjetoLoja2dsA.styles.css" asp-append-version="true" />
     <link href="~/css/estilo.css" rel="stylesheet" asp-append-version="true" /> <!-- ✅ Adicione isso -->
+    <script src="~/js/carrinho.js" asp-append-version="true"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-#0C101A border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> RocketGames</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -35,45 +36,61 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">Entrar</a>
                         </li>
                         <li class="nav-item  flex-grow-1 d-inline-flex">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Cadastro">Criar Conta</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Cadastro">Criar Conta</a> 
                         </li>
+
+                        <li class="nav-item  flex-grow-1 d-inline-flex">
+                            <a class="navbar-brand" asp-area=" " asp-controller="Home" asp-action="Carrinho">
+                                <img src="/pastafotos/icons8-carrinho-de-compras-48.png" width="40" height="35" />
+                                <!-- Badge do contador -->
+                                <span id="cart-count-badge"
+                                      class="cart-badge">
+                                    0
+                                </span>
+                            </a>
+                        </li>
+                        
+                        
                         
                     </ul>
                 </div>
                 <style>
                     #usuario{
                        margin-top:8%;
+                       font-weight:bold;
                      
                     }
 
-                    #pesquisartxt{
-                        border-radius:10px;
+                    .nav-item{
+                        font-weight:bold;
                     }
 
-                    .search-box {
+                    .cart-wrapper {
                         position: relative;
                         display: inline-block;
                     }
 
-                        .search-box input {
-                            padding: 8px 30px 8px 10px;
-                            border: 1px solid #ccc;
-                            border-radius: 8px;
-                            font-size: 14px;
-                        }
+                    .cart-badge {
+                        position: absolute;
+                        top:30px; /* sobe um pouco */
+                        right:20px; /* encosta na lateral */
+                        min-width: 16px;
+                        padding: 0 4px;
+                        font-size: 0.7rem;
+                        line-height: 1.2;
+                        text-align: center;
+                        border-radius: 999px;
+                        background-color: #dc3545; /* vermelho */
+                        color: #fff;
+                        display: none; /* começa escondido (quando 0 itens) */
+                    }
 
-                        .search-box i {
-                            position: absolute;
-                            right: 10px;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            color: gray;
-                        }
 
-                        .search-box input:focus {
-                            border-color:blueviolet; /* muda a cor da borda */
-                            background-color: #f9f9f9; /* muda a cor de fundo */
-                        }
+
+                   
+
+                      
+                        
 
                 </style>
             </div>

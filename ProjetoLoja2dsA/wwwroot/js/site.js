@@ -113,7 +113,7 @@
         if (add) {
             const name = add.closest('.game-card')?.dataset?.name || 'Jogo';
             // Aqui você pode fazer um POST para sua action ASP.NET
-            alert(`${name} adicionado ao carrinho!`);
+            
         }
     });
 

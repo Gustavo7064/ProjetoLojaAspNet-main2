@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoLoja2dsA.Repositorio;
 using ProjetoLoja2dsA.Models;
+using Org.BouncyCastle.Tls;
 
 
 
@@ -40,8 +41,10 @@ namespace ProjetoLoja2dsA.Controllers
 
             if (usuario != null && usuario.Senha == senha)
             {
+                
                 return RedirectToAction("Index", "Home");
             }
+            
             ModelState.AddModelError("", "Email / senha Inválidos");
 
 
