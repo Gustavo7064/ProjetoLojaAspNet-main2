@@ -22,13 +22,14 @@ namespace ProjetoLoja2dsA.Repositorio
                 conexao.Open();
                 var cmd = conexao.CreateCommand();
                 // Cria um novo comando SQL para inserir dados na tabela 'cliente'
-                  cmd.CommandText = "INSERT INTO Usuario (email,senha) VALUES (@email, @senha)"; 
+                  cmd.CommandText = "INSERT INTO Usuario (email,senha, nome) VALUES (@email, @senha, @nome)"; 
 
                 // Adiciona um parâmetro para o email, definindo seu tipo e valor
                 cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = usuario.Email;
                 // Adiciona um parâmetro para o senha, definindo seu tipo e valor
                 cmd.Parameters.Add("@senha", MySqlDbType.VarChar).Value = usuario.Senha;
-               
+                cmd.Parameters.AddWithValue("@nome", usuario.Nome);
+
                 // Executa o comando SQL de inserção e retorna o número de linhas afetadas
                 cmd.ExecuteNonQuery();
                 // Fecha explicitamente a conexão com o banco de dados 
@@ -67,11 +68,12 @@ namespace ProjetoLoja2dsA.Repositorio
                             // Lê o valor da coluna "Id" da linha atual do resultado, converte para inteiro e atribui à propriedade 'Id' do objeto 'usuario'.
                             Id = Convert.ToInt32(dr["id"]),
                             // Lê o valor da coluna "Nome" da linha atual do resultado, converte para string e atribui à propriedade 'Nome' do objeto 'usuario'.
-                           // Nome = dr["nome"].ToString(),
+                            // Nome = dr["nome"].ToString(),
                             // Lê o valor da coluna "Email" da linha atual do resultado, converte para string e atribui à propriedade 'Email' do objeto 'usuario'.
                             Email = dr["email"].ToString(),
                             // Lê o valor da coluna "Senha" da linha atual do resultado, converte para string e atribui à propriedade 'Senha' do objeto 'usuario'.
-                            Senha = dr["senha"].ToString()
+                            Senha = dr["senha"].ToString(),
+                            Nome = dr["nome"].ToString()    
                         };
                     }
                     /* Retorna o objeto 'usuario'. Se nenhum usuário foi encontrado com o email fornecido, a variável 'usuario'
@@ -80,5 +82,53 @@ namespace ProjetoLoja2dsA.Repositorio
                 }
             }
         }
+
+        // Busca o usuário pelo ID
+        public Usuario ObterPorId(int id)
+        {
+            Usuario usuario = null;
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string sql = "SELECT * FROM Usuario WHERE id = @id";
+                using (var cmd = new MySqlCommand(sql, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            usuario = new Usuario
+                            {
+                                Id = Convert.ToInt32(reader["id"]),
+                                Nome = reader["nome"].ToString(),
+                                Email = reader["email"].ToString(),
+                                Senha = reader["senha"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            return usuario;
+        }
+
+        // Atualiza os dados do usuário
+        public void AtualizarUsuario(Usuario usuario)
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string sql = "UPDATE Usuario SET nome=@nome, email=@email, senha=@senha WHERE id=@id";
+                using (var cmd = new MySqlCommand(sql, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@nome", usuario.Nome);
+                    cmd.Parameters.AddWithValue("@email", usuario.Email);
+                    cmd.Parameters.AddWithValue("@senha", usuario.Senha);
+                    cmd.Parameters.AddWithValue("@id", usuario.Id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

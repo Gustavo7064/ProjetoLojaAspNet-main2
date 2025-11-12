@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{
+    // Lê o nome e a url da foto que estão na Session
+    var nomeUsuario = Context.Session.GetString("NomeUsuario");
+    var avatarUrl = Context.Session.GetString("AvatarUrl")
+                    ?? Url.Content("~/img/avatar-default.png");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,20 +15,28 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProjetoLoja2dsA.styles.css" asp-append-version="true" />
     <link href="~/css/estilo.css" rel="stylesheet" asp-append-version="true" /> <!-- ✅ Adicione isso -->
-    <script src="~/js/carrinho.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Perfil.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
+    
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-#0C101A border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> RocketGames</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <!-- LOGO / NOME DA LOJA -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RocketGames</a>
+
+                <!-- BOTÃO DO MENU NO CELULAR -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <!-- CONTEÚDO DA NAVBAR -->
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <!-- MENU ESQUERDO: INÍCIO / JOGOS -->
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
@@ -29,40 +44,81 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Jogos">Jogos</a>
                         </li>
-                        </ul>
+                    </ul>
 
-                        <ul>
-                        <li class="nav-item  flex-grow-1 d-inline-flex " id="usuario">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">Entrar</a>
-                        </li>
-                        <li class="nav-item  flex-grow-1 d-inline-flex">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Cadastro">Criar Conta</a> 
-                        </li>
 
-                        <li class="nav-item  flex-grow-1 d-inline-flex">
-                            <a class="navbar-brand" asp-area=" " asp-controller="Home" asp-action="Carrinho">
+                    
+                    <ul class="navbar-nav ms-auto align-items-center">
+                    
+ 
+                        @* SE ESTÁ LOGADO: MOSTRA FOTO + NOME + MENU *@
+                        @if (!string.IsNullOrEmpty(nomeUsuario))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="@avatarUrl"
+                                         alt="Foto do usuário"
+                                         class="rounded-circle me-2"
+                                         style="width:40px; height:40px; object-fit:cover; border:2px solid rgba(255,255,255,0.15);">
+                                    <span class="text-dark">@nomeUsuario</span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Usuario" asp-action="Perfil">Perfil</a>
+                                        @* ajusta depois pra tela de perfil que você criar *@
+                                    </li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <form asp-controller="Usuario" asp-action="Logout" method="post" class="px-3">
+                                            <button type="submit" class="btn btn-link p-0 text-danger">Sair</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            @* SE NÃO ESTÁ LOGADO: MOSTRA ENTRAR + CADASTRAR (SEU LAYOUT ANTIGO) *@
+                            <li class="nav-item">
+                                <a class="nav-link" id="Login" asp-controller="Usuario" asp-action="Login">Entrar</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="Cadastro" asp-controller="Usuario" asp-action="Cadastro">
+                                    Criar Conta
+                                </a>
+                            </li>
+                        }
+                    
+
+                    <!-- MENU DIREITO: CARRINHO + USUÁRIO -->
+                   
+                        <!-- CARRINHO -->
+                        <li class="nav-item">
+                            <a class="navbar-brand cart-wrapper" asp-area="" asp-controller="Home" asp-action="Carrinho">
                                 <img src="/pastafotos/icons8-carrinho-de-compras-48.png" width="40" height="35" />
                                 <!-- Badge do contador -->
-                                <span id="cart-count-badge"
-                                      class="cart-badge">
+                                <span id="cart-count-badge" class="cart-badge">
                                     0
                                 </span>
                             </a>
                         </li>
-                        
-                        
-                        
                     </ul>
-                </div>
+                                
+                    </div>
+
+
+                <!-- SEU CSS INLINE (PODE MANTER) -->
                 <style>
-                    #usuario{
-                       margin-top:8%;
-                       font-weight:bold;
-                     
+                    #usuario {
+                        margin-top: 8%;
+                        font-weight: bold;
                     }
 
-                    .nav-item{
-                        font-weight:bold;
+                    .nav-item {
+                       
                     }
 
                     .cart-wrapper {
@@ -72,8 +128,8 @@
 
                     .cart-badge {
                         position: absolute;
-                        top:30px; /* sobe um pouco */
-                        right:20px; /* encosta na lateral */
+                        top: 30px; /* sobe um pouco */
+                        right: 20px; /* encosta na lateral */
                         min-width: 16px;
                         padding: 0 4px;
                         font-size: 0.7rem;
@@ -85,17 +141,30 @@
                         display: none; /* começa escondido (quando 0 itens) */
                     }
 
+                    #Login{
+                        background-color: #A27ED6;
+                        border-radius:10px;
+                        width:80px;
+                        text-align:center;
+                        color:white;
+                        font-weight:bold;
 
-
-                   
-
-                      
+                    }
+                    #Cadastro{
+                        margin-left:20px;
+                        background-color: #A27ED6;
+                        border-radius: 10px;
+                        margin-right:18px;
+                        color:white;
+                        font-weight: bold;
                         
-
+                    }
                 </style>
             </div>
         </nav>
     </header>
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

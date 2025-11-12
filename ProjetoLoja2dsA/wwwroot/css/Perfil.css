@@ -1,0 +1,293 @@
+﻿/* =======================
+   PÁGINA DE PERFIL NOVA
+   ======================= */
+
+.perfil-root {
+    min-height: calc(100vh - 120px);
+    background: radial-gradient(circle at top left, #1b1336 0, #050715 45%, #050915 100%);
+    padding: 2.5rem 0 3.5rem;
+    color: #f9fafb;
+}
+
+.perfil-container {
+    max-width: 1100px;
+}
+
+/* CABEÇALHO DO PERFIL (avatar + nome + botão sair) */
+.perfil-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.4rem 1.6rem;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.98), rgba(30, 64, 175, 0.97));
+    box-shadow: 0 0 25px rgba(30, 64, 175, 0.6), 0 0 70px rgba(15, 23, 42, 0.9);
+}
+
+.perfil-user-info {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+/* AURA DO AVATAR */
+.perfil-avatar-ring {
+    padding: 3px;
+    border-radius: 999px;
+    background: conic-gradient(from 180deg, #22d3ee, #4f46e5, #a855f7, #22c55e, #22d3ee);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.7);
+}
+
+.perfil-avatar-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    object-fit: cover;
+    border: 3px solid #020617;
+}
+
+.perfil-username {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    text-transform: lowercase;
+}
+
+.perfil-subtitle {
+    margin: 0.1rem 0;
+    font-size: 0.9rem;
+    color: #c4b5fd;
+}
+
+/* bolinha “online” */
+.perfil-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.7);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #bbf7d0;
+}
+
+.perfil-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #4ade80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.9);
+}
+
+.perfil-header-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* BOTÕES DO PERFIL */
+.btn-perfil-outline {
+    border-radius: 999px;
+    border: 4px solid rgba(248, 113, 113, 0.9);
+    background: transparent;
+    color: #fecaca;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+    .btn-perfil-outline:hover {
+        background: rgba(248, 113, 113, 0.18);
+        box-shadow: 0 0 12px rgba(248, 113, 113, 0.75);
+        transform: translateY(-1px);
+        font-weight:bold;
+    }
+
+.btn-perfil-primary {
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: #f9fafb;
+    font-size: 0.9rem;
+    padding: 0.45rem 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(76, 29, 149, 0.9), 0 0 12px rgba(59, 130, 246, 0.7);
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+    .btn-perfil-primary:hover {
+        filter: brightness(1.08);
+        transform: translateY(-1px);
+        box-shadow: 0 0 12px rgba(76, 29, 149, 1), 0 0 30px rgba(59, 130, 246, 0.95);
+        color:antiquewhite;
+        font-weight:bold;
+    }
+
+/* CARDS SECUNDÁRIOS */
+.perfil-card {
+    background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
+    border-radius: 18px;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    box-shadow: 0 0 20px rgba(15, 23, 42, 0.9);
+    overflow: hidden;
+}
+
+.perfil-card-compact {
+    height: 100%;
+}
+
+.perfil-card-header {
+    padding: 0.75rem 1.1rem;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.9);
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #e5e7eb;
+    background: linear-gradient(to right, rgba(15, 23, 42, 0.98), rgba(30, 64, 175, 0.6));
+}
+
+.perfil-card-body {
+    padding: 1.1rem 1.3rem 1.2rem;
+}
+
+/* CAMPOS DE DADOS (nome / e-mail) */
+.perfil-field {
+    padding: 0.65rem 0.75rem;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(55, 65, 81, 0.8);
+}
+
+.perfil-field-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9ca3af;
+    margin-bottom: 0.08rem;
+}
+
+.perfil-field-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #e5e7eb;
+}
+
+/* LINHA DIVISÓRIA */
+.perfil-divider {
+    height: 1px;
+    margin: 1rem 0;
+    background: linear-gradient(to right, transparent, rgba(148, 163, 184, 0.9), transparent);
+}
+
+/* METADADOS (tipo de conta / status) */
+.perfil-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.perfil-meta-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9ca3af;
+}
+
+.perfil-meta-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.perfil-meta-badge {
+    display: inline-flex;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid rgba(34, 197, 94, 0.8);
+    font-size: 0.75rem;
+    color: #bbf7d0;
+    background: rgba(21, 128, 61, 0.15);
+}
+
+/* ESTATÍSTICAS (placeholder) */
+.perfil-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.perfil-stat {
+    padding: 0.7rem 0.6rem;
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(30, 64, 175, 0.85);
+    text-align: center;
+}
+
+.perfil-stat-value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.perfil-stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* TEXTOS E TAGS */
+.perfil-text {
+    font-size: 0.9rem;
+    color: #cbd5f5;
+    margin-bottom: 0.7rem;
+}
+
+.perfil-link {
+    font-size: 0.85rem;
+    color: #93c5fd;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(147, 197, 253, 0.7);
+    padding-bottom: 1px;
+}
+
+    .perfil-link:hover {
+        color: #bfdbfe;
+        border-color: rgba(191, 219, 254, 1);
+    }
+
+.perfil-tag {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    background: rgba(59, 130, 246, 0.25);
+    border: 1px solid rgba(59, 130, 246, 0.9);
+    color: #dbeafe;
+}
+
+/* RESPONSIVO */
+@media (max-width: 767.98px) {
+    .perfil-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .perfil-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .perfil-root {
+        padding: 1.8rem 0 2.5rem;
+    }
+}
